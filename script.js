@@ -1,17 +1,19 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-var characterSets = {
-  upperCase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-  lowerCase: 'abcdefghijklmnopqrstuvwxyz',
-  numbers: '0123456789',
-  symbols: '!@#$%^&*()_+[]{}|;:,.<>?'
-};
+var upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var  lowerCase ='abcdefghijklmnopqrstuvwxyz';
+var  numbers = '0123456789';
+var  symbols = '!@#$%^&*()_+[]{}|;:,.<>?';
+
+let randomPassword = "";
+
+let allCharacters = upperCase + lowerCase + numbers + symbols;
 // create the function here //done 
 
 // prompt to get the number of characters in password // done
 
-// need 4 ifs with 4 confirmExpressionconditionals
+// need 4 ifs with 4 confirmExpressionconditionals //done
 
 // processing...
 
@@ -68,17 +70,45 @@ function createPassword(){
   else {
     alert ("Your password won't include symbols!");
   }
+  if (confirmUpperCase === false && confirmLowerCase === false && confirmNumbers === false && confirmSymbols === false){
+    alert ("Select at least one option!");
+    return createPassword();
+  }
+
+  if (confirmUpperCase === true){
+  for (i = 0; i < passwordLength; i ++) {
+    // randomPassword += upperCase[Math.floor(Math.random() * upperCase.length)];
+    randomPassword += allCharacters[Math.floor(Math.random() * allCharacters.length)];
+}
+}
+if (confirmLowerCase === true){
+  for (i = 0; i < passwordLength; i ++) {
+    randomPassword += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+}
+}
+if (confirmNumbers === true){
+  for (i = 0; i < passwordLength; i ++) {
+    randomPassword += numbers[Math.floor(Math.random() * numbers.length)];
+}
+}
+if (confirmSymbols === true){
+  for (i = 0; i < passwordLength; i ++) {
+    randomPassword += symbols[Math.floor(Math.random() * symbols.length)];
+}
+}
+  console.log(randomPassword);
+  return randomPassword;
+
 }
 
 
 // Write password to the #password input
-// function writePassword() {
-//   var password = createPassword();
-//   var passwordText = document.querySelector("#password");
+function writePassword() {
+  var passwordText = document.querySelector("#password");
+  passwordText.value = randomPassword;
+}
 
-//   passwordText.value = password;
-
-// }
+writePassword()
 
 // Add event listener to generate button
 generateBtn.setAttribute("style", ":hover")
