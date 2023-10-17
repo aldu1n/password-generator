@@ -1,6 +1,7 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+// Variables for each option
 var upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var  lowerCase ='abcdefghijklmnopqrstuvwxyz';
 var  numbers = '0123456789';
@@ -12,6 +13,7 @@ var allCharacters = upperCase + lowerCase + numbers + symbols;
 
 function createPassword(){
 
+  // Prompt to enter the password lenght
   var getPasswordLength = function() {
   var length = window.prompt("Enter your desired password length (between 8 and 128 characters)");
   var min = 8;
@@ -22,17 +24,16 @@ function createPassword(){
 }
 
 
-
+// If leanght is less than 8 or more than 128, or not a number, it shows an error and reruns the function
   var passwordLength = getPasswordLength();
   if (typeof passwordLength === "undefined"){
     alert("Incorrect input! Please enter a number between 8 and 128.");
     return createPassword();
   }
-  console.log(passwordLength);
 
-
+ //Confirmation for each of the options, if yes it confirms the option.
   var confirmUpperCase = window.confirm ("Click OK, if you want your password to include uppercase letters.");
-  if (confirmUpperCase === true){
+  if (confirmUpperCase){
     alert ("Your password will include uppercase letters!");
   }
   else {
@@ -63,7 +64,7 @@ function createPassword(){
   else {
     alert ("Your password won't include symbols!");
   }
-
+  //If none options were selected, it tells to select at least one of them , and reruns the function
   if (confirmUpperCase === false && confirmLowerCase === false && confirmNumbers === false && confirmSymbols === false){
     alert ("Select at least one option!");
     return createPassword();
@@ -166,6 +167,7 @@ function createPassword(){
 
     writePassword();
     
+    //Function to write password in text field
     function writePassword() {
       var passwordText = document.querySelector("#password");
       passwordText.value = randomPassword;
@@ -173,4 +175,5 @@ function createPassword(){
 
   }
 
+  // Runs createPassword function on a click
 generateBtn.addEventListener("click", createPassword);
