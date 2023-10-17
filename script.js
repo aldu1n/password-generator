@@ -69,57 +69,99 @@ function createPassword(){
     return createPassword();
   }
 
-  // var upperAndLower = upperCase + lowerCase;
-  // var upperAndNumbers = upperCase + numbers;
-  // var upperAndSymbols = upperCase + symbols;
-  // var upperAndLowerAndNumbers = upperCase + lowerCase + numbers;
-  // var upperAndLowerAndSymbols = upperCase + lowerCase + symbols;
-  // var upperAndSymbolsAndNumbers = upperCase + lowerCase + numbers;
-
+  // All password combinations for uppercase
     if (confirmUpperCase && !confirmLowerCase && !confirmNumbers && !confirmSymbols){
       for (i = 0; i < passwordLength; i++) {
         randomPassword += upperCase[Math.floor(Math.random() * upperCase.length)];
-    }
-    }
-    else if (confirmUpperCase && confirmLowerCase && !confirmNumbers && !confirmSymbols) {
-      for (i = 0; i < passwordLength; i++){
-      randomPassword += upperAndLower[Math.floor(Math.random() * upperAndLower.length)];
       }
     }
-    else if (confirmUpperCase && confirmLowerCase && confirmNumbers && !confirmSymbols) {
-      for (i = 0; i < passwordLength; i++){
-        randomPassword += upperCase[Math.floor(Math.random() * upperCase.length)].concat(lowerCase[Math.floor(Math.random() * lowerCase.length)]).concat(numbers[Math.floor(Math.random() * numbers.length)]);
+
+    else if (confirmUpperCase && confirmLowerCase && !confirmNumbers && !confirmSymbols) {
+      for (i = 0; i < passwordLength/2; i++){
+      randomPassword += upperCase[Math.floor(Math.random() * upperCase.length)].concat((lowerCase[Math.floor(Math.random() * lowerCase.length)]));
+      }
+    }
+
+    else if (confirmUpperCase && !confirmLowerCase && confirmNumbers && !confirmSymbols) {
+      for (i = 0; i < passwordLength/2; i++){
+      randomPassword += upperCase[Math.floor(Math.random() * upperCase.length)].concat((numbers[Math.floor(Math.random() * numbers.length)]));
+      }
+    }
+
+    else if (confirmUpperCase && !confirmLowerCase && !confirmNumbers && confirmSymbols) {
+      for (i = 0; i < passwordLength/2; i++){
+      randomPassword += upperCase[Math.floor(Math.random() * upperCase.length)].concat((symbols[Math.floor(Math.random() * symbols.length)]));
+      }
+    }
+
+    else if (confirmUpperCase && !confirmLowerCase && confirmNumbers && confirmSymbols) {
+      for (i = 0; i < passwordLength/3; i++){
+        randomPassword += upperCase[Math.floor(Math.random() * upperCase.length)].concat(numbers[Math.floor(Math.random() * numbers.length)],(symbols[Math.floor(Math.random() * symbols.length)]));
         }
     }
 
+   // All password combinations for lowercase
     if (confirmLowerCase && !confirmUpperCase && !confirmNumbers && !confirmSymbols){
       for (i = 0; i < passwordLength; i++) {
         randomPassword += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+        }
     }
-    }
+
     else if (!confirmUpperCase && confirmLowerCase && confirmNumbers && !confirmSymbols) {
-
+      for (i = 0; i < passwordLength/2; i++){
+        randomPassword += lowerCase[Math.floor(Math.random() * lowerCase.length)].concat((numbers[Math.floor(Math.random() * numbers.length)]));
+        }
     }
+
     else if (!confirmUpperCase && confirmLowerCase && !confirmNumbers && confirmSymbols) {
-
+      for (i = 0; i < passwordLength/2; i++){
+        randomPassword += lowerCase[Math.floor(Math.random() * lowerCase.length)].concat((symbols[Math.floor(Math.random() * symbols.length)]));
+        }
     }
 
+    else if (!confirmUpperCase && confirmLowerCase && confirmNumbers && confirmSymbols) {
+      for (i = 0; i < passwordLength/3; i++){
+        randomPassword += lowerCase[Math.floor(Math.random() * lowerCase.length)].concat(numbers[Math.floor(Math.random() * numbers.length)],(symbols[Math.floor(Math.random() * symbols.length)]));
+        }
+    }
+
+    // All password combinations for numbers
     if (confirmNumbers && !confirmUpperCase && !confirmLowerCase && !confirmSymbols){
       for (i = 0; i < passwordLength; i++) {
         randomPassword += numbers[Math.floor(Math.random() * numbers.length)];
-    }
+        }
     }
 
+    else if (!confirmUpperCase && !confirmLowerCase && confirmNumbers && confirmSymbols) {
+      for (i = 0; i < passwordLength/2; i++){
+        randomPassword += numbers[Math.floor(Math.random() * numbers.length)].concat((symbols[Math.floor(Math.random() * symbols.length)]));
+        }
+    }
+
+    else if (confirmUpperCase && confirmLowerCase && confirmNumbers && !confirmSymbols) {
+      for (i = 0; i < passwordLength/3; i++){
+        randomPassword += upperCase[Math.floor(Math.random() * upperCase.length)].concat(lowerCase[Math.floor(Math.random() * lowerCase.length)],(numbers[Math.floor(Math.random() * numbers.length)]));
+        }
+    }
+
+   // All password combinations for symbols
     if (confirmSymbols && !confirmUpperCase && !confirmLowerCase && !confirmNumbers){
       for (i = 0; i < passwordLength; i++) {
         randomPassword += symbols[Math.floor(Math.random() * symbols.length)];
-    }
+        }
     }
 
+    else if (confirmUpperCase && confirmLowerCase && !confirmNumbers && confirmSymbols) {
+      for (i = 0; i < passwordLength/3; i++){
+        randomPassword += upperCase[Math.floor(Math.random() * upperCase.length)].concat(lowerCase[Math.floor(Math.random() * lowerCase.length)],(symbols[Math.floor(Math.random() * symbols.length)]));
+        }
+    }
+
+  // If each option is checked
     if (confirmUpperCase && confirmLowerCase && confirmNumbers && confirmSymbols){
       for (i = 0; i < passwordLength; i++) {
           randomPassword += allCharacters[Math.floor(Math.random() * allCharacters.length)];
-    }
+        }
     }
 
     writePassword();
